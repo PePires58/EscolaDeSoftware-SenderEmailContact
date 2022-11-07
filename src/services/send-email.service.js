@@ -11,7 +11,7 @@ exports.SendEmail = async function (emailData) {
 
     const transporter = nodemailder.createTransport({
         host: "smtp-mail.outlook.com",
-        secureConnection: true,
+        secureConnection: false,
         port: 587,
         auth: {
             user: senderEmail.toString(),
