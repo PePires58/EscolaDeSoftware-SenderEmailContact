@@ -5,7 +5,7 @@ exports.lambdaHandler = async (event, context) => {
     try {
         console.log(event);
 
-        let mailSended = sendEmailService.SendEmail({
+        let mailSended = await sendEmailService.SendEmail({
             Email: '123@gmail.com',
             Mensagem: 'Minha Mensagem'
         });
