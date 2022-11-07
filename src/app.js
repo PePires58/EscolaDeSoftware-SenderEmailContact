@@ -5,7 +5,7 @@ exports.lambdaHandler = async (event, context) => {
     try {
         const body = JSON.parse(event.body);
 
-        await sendEmailService.SendEmail({
+        sendEmailService.SendEmail({
             Email: body.Email,
             Mensagem: body.Mensagem
         }).then(() => {
@@ -14,6 +14,7 @@ exports.lambdaHandler = async (event, context) => {
             .catch(() => {
                 return defaultResult(400, 'Erro ao enviar o e-mail');
             });
+
     } catch (error) {
         return errorResult(error);
     }
