@@ -4,7 +4,7 @@ on:
     branches: [main]
 
 jobs:
-  Deploy-stack:
+  Prod-Lambda-Workflow:
     runs-on: ubuntu-latest
 
     steps:
