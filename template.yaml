@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Escola de software - Send Email - Lambda Function
+Parameters:
+  SenderEmail:
+    Description: Sender email
+    Type: String
+  RecipientEmail:
+    Description: Recipient email
+    Type: String
+  SenderPassword:
+    Description: Sender password
+    Type: String
+
+Resources:
+  
+  DeleteBlogPostFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: SendEmailContactFn
+      Description: Send e-mail about our contact space
+      CodeUri: src/
+      Handler: app.lambdaHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      Timeout: 2
+      Environment:
+        Variables:
+          SenderEmail: !Ref SenderEmail
+          RecipientEmail: !Ref RecipientEmail
+          SenderPassword: !Ref SenderPassword

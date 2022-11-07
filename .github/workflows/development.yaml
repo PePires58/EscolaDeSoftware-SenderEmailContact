@@ -1,0 +1,20 @@
+name: Development workflow - Lambda Function
+on:
+  push:
+    branches: [development]
+
+jobs:
+  Deploy-stack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Restore dependencies
+        run: cd src && npm install
+ 
+      - name: Build Project
+        run: echo build
+
+      - name: Testing
+        run: cd src && npm run test

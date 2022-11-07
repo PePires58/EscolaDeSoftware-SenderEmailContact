@@ -1,0 +1,16 @@
+{
+  "name": "send-email-contato-escoladesoftware",
+  "version": "1.0.0",
+  "description": "send email de contato para escola de software",
+  "repository": "https://github.com/PePires58/EscolaDeSoftware-SenderEmailContact",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha './specs/*.spec.js'"
+  },
+  "author": "PEDRO HENRIQUE PIRES - Escola de Software",
+  "license": "MIT",
+  "dependencies": {
+    "mocha": "^10.1.0",
+    "nodemailer": "^6.8.0"
+  }
+}
