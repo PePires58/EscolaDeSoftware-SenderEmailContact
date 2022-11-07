@@ -3,15 +3,17 @@ const sendEmailService = require('./services/send-email.service');
 exports.lambdaHandler = async (event, context) => {
 
     try {
-        console.log(event);
+        const body = JSON.parse(event.body);
 
-        let mailSended = await sendEmailService.SendEmail({
-            Email: '123@gmail.com',
-            Mensagem: 'Minha Mensagem'
-        });
-
-        return mailSended ? defaultResult(200, 'E-mail enviado com sucesso')
-            : defaultResult(400, 'Erro ao enviar o e-mail');
+        await sendEmailService.SendEmail({
+            Email: body.Email,
+            Mensagem: body.Mensagem
+        }).then(() => {
+            return defaultResult(200, 'E-mail enviado com sucesso')
+        })
+            .catch(() => {
+                return defaultResult(400, 'Erro ao enviar o e-mail');
+            });
     } catch (error) {
         return errorResult(error);
     }
