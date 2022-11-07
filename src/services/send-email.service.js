@@ -4,6 +4,7 @@ const sendEmailValidator = require('./send-email-validator');
 exports.SendEmail = async function (emailData) {
     let errors = sendEmailValidator.ValidateObject(emailData);
 
+    console.log('errors on validation' + errors);
     if (errors.length > 0)
         return errors;
 
@@ -31,8 +32,13 @@ exports.SendEmail = async function (emailData) {
         }
 
         transporter.sendMail(emailOptions)
-            .then(() => console.log('send email with success'))
-            .catch(error => errors.push(error));
+            .then(() => {
+                console.log('send email with success');
+            })
+            .catch(error => {
+                console.log('error on sending e-mail');
+                errors.push(error);
+            });
     } catch (error) {
         errors.push(error);
     }
