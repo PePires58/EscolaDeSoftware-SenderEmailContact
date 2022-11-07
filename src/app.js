@@ -12,14 +12,13 @@ exports.lambdaHandler = async (event, context) => {
         await sendEmailService.SendEmail({
             Email: body.Email,
             Mensagem: body.Mensagem
-        }).then((result) => {
+        }).then(() => {
             console.log('e-mail sended');
-            errors.push(result);
         })
             .catch((error) => {
                 console.log('error on send e-mail');
-                errors.push(error);
                 console.log(error);
+                errors.push(error);
             });
 
         return errors.length > 0 ? defaultResult(400, 'Erro ao enviar o e-mail') :
