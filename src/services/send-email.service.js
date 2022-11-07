@@ -14,8 +14,8 @@ exports.SendEmail = async function (emailData) {
         secureConnection: true,
         port: 587,
         auth: {
-            user: `${senderEmail}`,
-            pass: `${process.env.SenderPassword}`
+            user: `${senderEmail.toString()}`,
+            pass: `${process.env.SenderPassword.toString()}`
         },
         tls: {
             ciphers: 'SSLv3'
@@ -23,8 +23,8 @@ exports.SendEmail = async function (emailData) {
     });
 
     const emailOptions = {
-        from: `${senderEmail}`,
-        to: `${process.env.RecipientEmail}`,
+        from: `${senderEmail.toString()}`,
+        to: `${process.env.RecipientEmail.toString()}`,
         subject: 'Contato treinamento corporativo',
         text: `Olá, meu e-mail é: ${emailData.Email}, estou entrando em contato para:\n${emailData.Mensagem}`
     }
