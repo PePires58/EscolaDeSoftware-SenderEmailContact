@@ -19,12 +19,11 @@ exports.lambdaHandler = async (event, context) => {
             .catch((error) => {
                 console.log('error on send e-mail');
                 errors.push(error);
-                ;
-            })
-            .finally(() => {
-                return errors.length > 0 ? defaultResult(400, 'Erro ao enviar o e-mail') :
-                    defaultResult(200, 'E-mail enviado com sucesso')
+                console.log(error);
             });
+
+        return errors.length > 0 ? defaultResult(400, 'Erro ao enviar o e-mail') :
+            defaultResult(200, 'E-mail enviado com sucesso')
 
     } catch (error) {
         return errorResult(error);
