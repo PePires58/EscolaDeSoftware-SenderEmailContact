@@ -9,16 +9,13 @@ exports.SendEmail = async function (emailData) {
 
     const senderEmail = process.env.SenderEmail;
 
-    console.log(process.env.SenderEmail);
-    console.log(process.env.SenderPassword);
-
     const transporter = nodemailder.createTransport({
         host: "smtp-mail.outlook.com",
         secureConnection: true,
         port: 587,
         auth: {
-            user: senderEmail,
-            pass: process.env.SenderPassword
+            user: `${senderEmail}`,
+            pass: `${process.env.SenderPassword}`
         },
         tls: {
             ciphers: 'SSLv3'
@@ -26,8 +23,8 @@ exports.SendEmail = async function (emailData) {
     });
 
     const emailOptions = {
-        from: senderEmail,
-        to: process.env.RecipientEmail,
+        from: `${senderEmail}`,
+        to: `${process.env.RecipientEmail}`,
         subject: 'Contato treinamento corporativo',
         text: `Olá, meu e-mail é: ${emailData.Email}, estou entrando em contato para:\n${emailData.Mensagem}`
     }
