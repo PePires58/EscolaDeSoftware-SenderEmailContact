@@ -29,5 +29,8 @@ exports.SendEmail = async function (emailData) {
         text: `Olá, meu e-mail é: ${emailData.Email}, estou entrando em contato para:\n${emailData.Mensagem}`
     }
 
+    console.log(emailOptions);
+    console.log(transporter.transporter);
+
     return transporter.sendMail(emailOptions);
 }
