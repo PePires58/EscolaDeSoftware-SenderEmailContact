@@ -5,16 +5,20 @@ exports.lambdaHandler = async (event, context) => {
     try {
         const body = JSON.parse(event.body);
 
+        const errors = [];
+
         sendEmailService.SendEmail({
             Email: body.Email,
             Mensagem: body.Mensagem
-        }).then(() => {
-            return defaultResult(200, 'E-mail enviado com sucesso')
+        }).then((result) => {
+            errors.push(result);
         })
-            .catch(() => {
-                return defaultResult(400, 'Erro ao enviar o e-mail');
+            .catch((error) => {
+                errors.push(error);
             });
 
+        return errors.length > 0 ? defaultResult(400, 'Erro ao enviar o e-mail') :
+            defaultResult(200, 'E-mail enviado com sucesso');
     } catch (error) {
         return errorResult(error);
     }
