@@ -4,7 +4,6 @@ const sendEmailValidator = require('./send-email-validator');
 exports.SendEmail = async function (emailData) {
     let errors = sendEmailValidator.ValidateObject(emailData);
 
-    console.log('errors on validation' + errors);
     if (errors.length > 0)
         return errors;
 
