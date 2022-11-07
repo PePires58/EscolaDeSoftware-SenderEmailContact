@@ -4,11 +4,8 @@ exports.lambdaHandler = async (event, context) => {
 
     try {
         const body = JSON.parse(event.body);
-        console.log('body' + body);
-
         const errors = [];
 
-        console.log('sending e-mail');
         await sendEmailService.SendEmail({
             Email: body.Email,
             Mensagem: body.Mensagem
