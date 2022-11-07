@@ -9,7 +9,7 @@ exports.lambdaHandler = async (event, context) => {
         const errors = [];
 
         console.log('sending e-mail');
-        sendEmailService.SendEmail({
+        await sendEmailService.SendEmail({
             Email: body.Email,
             Mensagem: body.Mensagem
         }).then((result) => {

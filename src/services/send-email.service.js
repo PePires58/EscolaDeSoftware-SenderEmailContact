@@ -31,5 +31,4 @@ exports.SendEmail = async function (emailData) {
     }
 
     return transporter.sendMail(emailOptions);
-
 }
