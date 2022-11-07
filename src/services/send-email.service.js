@@ -9,12 +9,15 @@ exports.SendEmail = async function (emailData) {
 
     const senderEmail = process.env.SenderEmail;
 
+    console.log(process.env.SenderEmail);
+    console.log(process.env.SenderPassword);
+
     const transporter = nodemailder.createTransport({
         host: "smtp-mail.outlook.com",
         secureConnection: true,
         port: 587,
         auth: {
-            user: process.env.SenderEmail,
+            user: senderEmail,
             pass: process.env.SenderPassword
         },
         tls: {
