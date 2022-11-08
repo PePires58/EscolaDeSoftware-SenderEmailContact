@@ -2,7 +2,7 @@
 
 This repository constains a lambda function to send e-mail about our contact space.
 
-The lamba function is called by an ApiGateway with the route: 'POST SendEmail'
+The lamba function is called by an ApiGateway with the route: 'POST SendEmail'.
 
 # Object Definition
 - Message: the message to us, this field is required
