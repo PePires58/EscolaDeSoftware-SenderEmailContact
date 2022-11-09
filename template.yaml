@@ -24,7 +24,7 @@ Resources:
       Runtime: nodejs16.x
       Architectures:
         - x86_64
-      Timeout: 3
+      Timeout: 7
       Environment:
         Variables:
           SenderEmail: !Ref SenderEmail
