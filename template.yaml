@@ -37,4 +37,4 @@ Resources:
       FunctionName: !GetAtt SendEmailFunction.Arn
       Action: lambda:InvokeFunction
       Principal: apigateway.amazonaws.com
-      SourceAccount: !Ref 'AWS::AccountId'
+      SourceAccount: !Ref AWS::AccountId
