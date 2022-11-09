@@ -14,7 +14,7 @@ Parameters:
 
 Resources:
   
-  DeleteBlogPostFunction:
+  SendEmailFunction:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: SendEmailContactFn
@@ -30,3 +30,11 @@ Resources:
           SenderEmail: !Ref SenderEmail
           RecipientEmail: !Ref RecipientEmail
           SenderPassword: !Ref SenderPassword
+
+  ApiGatewayPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !GetAtt SendEmailFunction.Arn
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceAccount: !Ref 'AWS::AccountId'
