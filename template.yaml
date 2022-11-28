@@ -40,8 +40,8 @@ Resources:
         AllowHeaders: 
           - "Content-Type"
         AllowMethods: 
-          - "POST"
-          - "OPTIONS"
+          - POST
+          - OPTIONS
         AllowOrigins: 
           - "https://dak1pni58hzx7.cloudfront.net"
         MaxAge: 3600
