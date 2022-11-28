@@ -31,6 +31,21 @@ Resources:
           RecipientEmail: !Ref RecipientEmail
           SenderPassword: !Ref SenderPassword
 
+  SendEmailFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties: 
+      AuthType: NONE
+      Cors: 
+        AllowCredentials: false
+        AllowHeaders: 
+          - "Content-Type"
+        AllowMethods: 
+          - "POST, OPTIONS"
+        AllowOrigins: 
+          - "https://dak1pni58hzx7.cloudfront.net"
+        MaxAge: 3600
+      TargetFunctionArn: !GetAtt SendEmailFunction.Arn
+
   ApiGatewayPermission:
     Type: AWS::Lambda::Permission
     Properties:
