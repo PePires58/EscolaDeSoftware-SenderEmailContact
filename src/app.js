@@ -3,24 +3,28 @@ const sendEmailService = require('./services/send-email.service');
 exports.lambdaHandler = async (event, context) => {
 
     try {
-        const body = JSON.parse(event.body);
-        const errors = [];
+        console.log(event);
 
-        await sendEmailService.SendEmail({
-            Email: body.Email,
-            Mensagem: body.Mensagem
-        }).then(() => {
-            console.log('e-mail sended');
-        })
-            .catch((error) => {
-                console.log('error on send e-mail');
-                console.log(error);
-                errors.push(error);
-            });
+        if (event.headers['Access-Control-Allow-Origin'] === 'https://dak1pni58hzx7.cloudfront.net') {
+            const body = JSON.parse(event.body);
+            const errors = [];
 
-        return errors.length > 0 ? defaultResult(400, 'Erro ao enviar o e-mail') :
-            defaultResult(200, 'E-mail enviado com sucesso')
+            await sendEmailService.SendEmail({
+                Email: body.Email,
+                Mensagem: body.Mensagem
+            }).then(() => {
+                console.log('e-mail sended');
+            })
+                .catch((error) => {
+                    console.log('error on send e-mail');
+                    console.log(error);
+                    errors.push(error);
+                });
 
+            return errors.length > 0 ? defaultResult(400, 'Erro ao enviar o e-mail') :
+                defaultResult(200, 'E-mail enviado com sucesso')
+        }
+        return errorResult(403, 'Erro de CORS');
     } catch (error) {
         return errorResult(error);
     }
