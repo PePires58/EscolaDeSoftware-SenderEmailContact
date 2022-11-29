@@ -43,7 +43,7 @@ Resources:
           - POST
         AllowOrigins: 
           - "https://dak1pni58hzx7.cloudfront.net"
-        MaxAge: 3600
+        MaxAge: 0
       TargetFunctionArn: !GetAtt SendEmailFunction.Arn
 
   ApiGatewayPermission:
