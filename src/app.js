@@ -29,9 +29,9 @@ exports.lambdaHandler = async (event, context) => {
             return errors.length > 0 ? defaultResult(400, 'Erro ao enviar o e-mail') :
                 defaultResult(200, 'E-mail enviado com sucesso')
         }
-        return defaultResult(200, 'Erro de CORS');
+        return defaultResult(403, { error: 'Erro de CORS' });
     } catch (error) {
-        return errorResult(error);
+        return errorResult(500, error);
     }
 }
 
@@ -47,8 +47,6 @@ function errorResult(statusCode, errors) {
         }
     };
 }
-
-function errorResult(errors) { return errorResult(500, errors); }
 
 function defaultResult(statusCode, message) {
     return {
