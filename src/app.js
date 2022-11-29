@@ -8,6 +8,8 @@ exports.lambdaHandler = async (event, context) => {
 
         const allowOrigin = event.headers['access-control-allow-origin'] || '';
 
+        console.log(allowOrigin);
+
         if (allowOrigin === 'https://dak1pni58hzx7.cloudfront.net') {
             const body = JSON.parse(event.body);
             const errors = [];
@@ -27,7 +29,7 @@ exports.lambdaHandler = async (event, context) => {
             return errors.length > 0 ? defaultResult(400, 'Erro ao enviar o e-mail') :
                 defaultResult(200, 'E-mail enviado com sucesso')
         }
-        return errorResult(403, 'Erro de CORS');
+        return defaultResult(200, 'Erro de CORS');
     } catch (error) {
         return errorResult(error);
     }
