@@ -4,6 +4,7 @@ exports.lambdaHandler = async (event, context) => {
 
     try {
         console.log(event);
+        console.log(event.headers);
 
         const body = JSON.parse(event.body);
         const errors = [];
