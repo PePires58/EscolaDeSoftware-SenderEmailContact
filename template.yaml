@@ -32,7 +32,7 @@ Resources:
           SenderEmail: !Ref SenderEmail
           RecipientEmail: !Ref RecipientEmail
           SenderPassword: !Ref SenderPassword
-     Metadata:
-        DockerTag: nodejs16.x-v1
-        DockerContext: ./src
-        Dockerfile: Dockerfile
+    Metadata:
+      DockerTag: nodejs16.x-v1
+      DockerContext: ./src
+      Dockerfile: Dockerfile
