@@ -16,6 +16,14 @@ jobs:
       - name: Testing
         run: cd src && npm run test
 
+      - name: Package
+        run: |
+          sam package --s3-bucket ${{ secrets.AWS_BUCKET_DEPLOY }} --template-file template.yaml --output-template-file deploy.yaml --image-repository "${{ secrets.ACCOUNT}}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/senderemail"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+
   Pull-request:
     runs-on: ubuntu-latest
     needs: [Development-lambda-workflow]
