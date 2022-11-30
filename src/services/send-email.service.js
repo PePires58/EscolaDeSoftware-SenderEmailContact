@@ -1,11 +1,6 @@
 const nodemailder = require('nodemailer');
-const sendEmailValidator = require('./send-email-validator');
 
 exports.SendEmail = async function (emailData) {
-    let errors = sendEmailValidator.ValidateObject(emailData);
-
-    if (errors.length > 0)
-        return errors;
 
     const senderEmail = process.env.SenderEmail;
 
