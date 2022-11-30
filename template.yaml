@@ -20,7 +20,7 @@ Resources:
       FunctionName: SendEmailContactFn
       Description: Send e-mail about our contact space
       PackageType: Image
-      ImageUri: public.ecr.aws/lambda/nodejs:14
+      ImageUri: lambda/nodejs
       Timeout: 7
       Events:
         SenderEmail:
