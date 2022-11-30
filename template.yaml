@@ -19,22 +19,20 @@ Resources:
     Properties:
       FunctionName: SendEmailContactFn
       Description: Send e-mail about our contact space
-      CodeUri: src/
-      Handler: app.lambdaHandler
-      Runtime: nodejs16.x
-      Architectures:
-        - x86_64
+      PackageType: Image
       Timeout: 7
+      Events:
+        SenderEmail:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
       Environment:
         Variables:
           SenderEmail: !Ref SenderEmail
           RecipientEmail: !Ref RecipientEmail
           SenderPassword: !Ref SenderPassword
-
-  ApiGatewayPermission:
-    Type: AWS::Lambda::Permission
-    Properties:
-      FunctionName: !GetAtt SendEmailFunction.Arn
-      Action: lambda:InvokeFunction
-      Principal: apigateway.amazonaws.com
-      SourceAccount: !Ref AWS::AccountId
+     Metadata:
+        DockerTag: nodejs16.x-v1
+        DockerContext: ./src
+        Dockerfile: Dockerfile
