@@ -17,11 +17,7 @@ Resources:
   SendEmailFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: SendEmailContactFn
-      Description: Send e-mail about our contact space
       PackageType: Image
-      ImageUri: public.ecr.aws/lambda/nodejs:16
-      Timeout: 7
       Events:
         SenderEmail:
           Type: Api
