@@ -1,62 +1,21 @@
-const sendEmailService = require('./services/send-email.service');
+const express = require("express");
+const cors = require("cors");
+const emailRouter = require("./routes/email.router");
 
-exports.lambdaHandler = async (event, context) => {
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
 
-    try {
-        console.log(event);
-        console.log(event.headers);
+app.options("*", cors({
+    maxAge: 0,
+    credentials: true,
+    allowedHeaders: ['Content-Type'],
+    optionsSuccessStatus: 200,
+    methods: ['POST', 'HEAD'],
+    origin: 'https://dak1pni58hzx7.cloudfront.net'
+}));
 
-        const allowOrigin = event.headers['access-control-allow-origin'] || '';
+app.use("/email", emailRouter);
 
-        console.log(allowOrigin);
-
-        if (allowOrigin === 'https://dak1pni58hzx7.cloudfront.net') {
-            const body = JSON.parse(event.body);
-            const errors = [];
-
-            await sendEmailService.SendEmail({
-                Email: body.Email,
-                Mensagem: body.Mensagem
-            }).then(() => {
-                console.log('e-mail sended');
-            })
-                .catch((error) => {
-                    console.log('error on send e-mail');
-                    console.log(error);
-                    errors.push(error);
-                });
-
-            return errors.length > 0 ? defaultResult(400, 'Erro ao enviar o e-mail') :
-                defaultResult(200, 'E-mail enviado com sucesso')
-        }
-        return errorResult(403, { error: 'Erro de CORS' });
-    } catch (error) {
-        return errorResult(500, error);
-    }
-}
-
-function errorResult(statusCode, errors) {
-    return {
-        'statusCode': statusCode,
-        'body': JSON.stringify({
-            errors: errors
-        }),
-        'isBase64Encoded': false,
-        'headers': {
-            'Content-Type': 'application/json'
-        }
-    };
-}
-
-function defaultResult(statusCode, message) {
-    return {
-        'statusCode': statusCode,
-        'body': JSON.stringify({
-            message: message
-        }),
-        'isBase64Encoded': false,
-        'headers': {
-            'Content-Type': 'application/json'
-        }
-    }
-}
+module.exports = app;
