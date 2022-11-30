@@ -4,6 +4,8 @@ This repository constains a lambda function to send e-mail about our contact spa
 
 The lamba function is called by an ApiGateway with the route: 'POST SendEmail'.
 
+This project was made with Express.js
+
 # Object Definition
 - Message: the message to us, this field is required
 - Email: your e-mail for next reply, this field is required
