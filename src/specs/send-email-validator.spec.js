@@ -20,7 +20,7 @@ describe('Send-email validator unit testing', function () {
 
     it('Should return a message of "Message is required"', function () {
         let errors = service.ValidateObject({
-            Email: 'email@gmail.com'
+            email: 'email@gmail.com'
         });
 
         assert.notEqual(errors, null);
@@ -30,8 +30,8 @@ describe('Send-email validator unit testing', function () {
 
     it('Should return no errors', function () {
         let errors = service.ValidateObject({
-            Email: 'email@gmail.com',
-            Mensagem: 'hello'
+            email: 'email@gmail.com',
+            mensagem: 'hello'
         });
 
         assert.strictEqual(errors.length, 0);
