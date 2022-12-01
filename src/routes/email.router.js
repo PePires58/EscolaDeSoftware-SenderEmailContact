@@ -9,10 +9,12 @@ router.post('/', basePath, async (req, res) => {
 
         let errors = emailServiceValidator.ValidateObject(req.body);
 
-        if (errors.length > 0)
+        if (errors.length > 0) {
             res.status(400).json({
                 errors: errors
             });
+            return;
+        }
 
         await emailService.SendEmail(req.body)
             .then(() => {
