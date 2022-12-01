@@ -24,4 +24,5 @@ const binaryMimeTypes = [
 const app = require("./app");
 module.exports.handler = serverless(app, {
     binary: binaryMimeTypes,
+    provider: "aws"
 });
