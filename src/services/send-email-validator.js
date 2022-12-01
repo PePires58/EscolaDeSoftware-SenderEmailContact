@@ -4,11 +4,11 @@ exports.ValidateObject = function (emailData) {
         errors.push('Object of mailMessage cannot be null');
         return errors;
     }
-    else if (!emailData.Email) {
+    else if (!emailData.email) {
         errors.push('Sender email is required');
         return errors;
     }
-    else if (!emailData.Mensagem) {
+    else if (!emailData.mensagem) {
         errors.push('Message is required');
         return errors;
     }
