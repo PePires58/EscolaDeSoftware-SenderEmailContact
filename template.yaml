@@ -34,6 +34,6 @@ Resources:
           RecipientEmail: !Ref RecipientEmail
           SenderPassword: !Ref SenderPassword
     Metadata:
-      DockerTag: aws-lambda-nodejs:16
+      DockerTag: 16
       DockerContext: ./src
       Dockerfile: Dockerfile
