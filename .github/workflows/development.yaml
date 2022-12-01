@@ -18,7 +18,7 @@ jobs:
 
       - name: ECR
         run: |
-          aws ecr create-repository --repository-name escoladesoftware-senderemail --image-tag-mutability IMMUTABLE --image-scanning-configuration scanOnPush=true
+          aws ecr describe-repositories --repository-names escoladesoftware-senderemail || aws ecr create-repository --repository-name escoladesoftware-senderemail --image-tag-mutability IMMUTABLE --image-scanning-configuration scanOnPush=true
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
