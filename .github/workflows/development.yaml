@@ -16,6 +16,22 @@ jobs:
       - name: Testing
         run: cd src && npm run test
 
+      - name: ECR
+        run: |
+          aws ecr describe-repositories --repository-names escoladesoftware-senderemail || aws ecr create-repository --repository-name escoladesoftware-senderemail --image-tag-mutability IMMUTABLE --image-scanning-configuration scanOnPush=true
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+
+      - name: Build
+        run: |
+          sam build
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+
   Pull-request:
     runs-on: ubuntu-latest
     needs: [Development-lambda-workflow]
