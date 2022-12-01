@@ -24,17 +24,9 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
 
-      - name: Package
-        run: |
-          sam package --s3-bucket ${{ secrets.AWS_BUCKET_DEPLOY }} --template-file template.yaml --image-repository "${{ secrets.ACCOUNT}}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/escoladesoftware-senderemail" --output-template-file deploy.yaml 
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
-
       - name: Deploy
         run: |
-          sam deploy --template-file deploy.yaml --stack-name prod-escoladesoftware-sendemailcontact-fn --capabilities CAPABILITY_NAMED_IAM --image-repository "${{ secrets.ACCOUNT}}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/escoladesoftware-senderemail" --parameter-overrides SenderEmail=${{ secrets.SENDER_EMAIL }} RecipientEmail=${{ secrets.RECIPIENT_EMAIL }} SenderPassword=${{ secrets.SENDER_PASSWORD}}
+          sam deploy --stack-name prod-escoladesoftware-sendemailcontact-fn --capabilities CAPABILITY_NAMED_IAM --image-repository "${{ secrets.ACCOUNT}}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/escoladesoftware-senderemail" --parameter-overrides SenderEmail=${{ secrets.SENDER_EMAIL }} RecipientEmail=${{ secrets.RECIPIENT_EMAIL }} SenderPassword=${{ secrets.SENDER_PASSWORD}}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
