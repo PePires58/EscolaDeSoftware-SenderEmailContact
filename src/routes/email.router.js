@@ -6,7 +6,7 @@ const emailServiceValidator = require("../services/send-email-validator");
 
 router.post('/', basePath, async (req, res) => {
     try {
-
+        console.log(req.body);
         let errors = emailServiceValidator.ValidateObject(req.body);
 
         if (errors.length > 0) {

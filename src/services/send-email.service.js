@@ -21,7 +21,7 @@ exports.SendEmail = async function (emailData) {
         from: senderEmail.toString(),
         to: process.env.RecipientEmail.toString(),
         subject: 'Contato treinamento corporativo',
-        text: `Olá, meu e-mail é: ${emailData.email}, estou entrando em contato para:\n${emailData.mensagem}`
+        text: `Olá, meu e-mail é: ${emailData.Email}, estou entrando em contato para:\n${emailData.Mensagem}`
     }
 
     return transporter.sendMail(emailOptions);
