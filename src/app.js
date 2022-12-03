@@ -37,7 +37,7 @@ function errorResult(statusCode, errors) {
         'headers': {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Origin': "https://dak1pni58hzx7.cloudfront.net/",
+            'Access-Control-Allow-Origin': 'https://dak1pni58hzx7.cloudfront.net',
             'Access-Control-Allow-Methods': 'POST'
         }
     };
@@ -53,7 +53,7 @@ function defaultResult(statusCode, message) {
         'headers': {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Origin': "https://dak1pni58hzx7.cloudfront.net/",
+            'Access-Control-Allow-Origin': 'https://dak1pni58hzx7.cloudfront.net',
             'Access-Control-Allow-Methods': 'POST'
         }
     }
