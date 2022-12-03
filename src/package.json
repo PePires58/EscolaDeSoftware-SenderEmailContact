@@ -5,19 +5,12 @@
   "repository": "https://github.com/PePires58/EscolaDeSoftware-SenderEmailContact",
   "main": "app.js",
   "scripts": {
-    "test": "mocha './specs/*.spec.js'",
-    "start": "nodemon local.js"
+    "test": "mocha './specs/*.spec.js'"
   },
   "author": "PEDRO HENRIQUE PIRES - Escola de Software",
   "license": "MIT",
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
     "mocha": "^10.1.0",
-    "nodemailer": "^6.8.0",
-    "serverless-http": "^3.1.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemailer": "^6.8.0"
   }
 }

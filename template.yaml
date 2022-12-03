@@ -12,16 +12,17 @@ Parameters:
     Description: Sender password
     Type: String
 
-Globals:
-  Function:
-    Timeout: 7
-
 Resources:
   
   SendEmailFunction:
     Type: AWS::Serverless::Function
     Properties:
-      PackageType: Image
+      Description: Sender email Lambda Fn
+      FunctionName: EscolaDeSoftware-SenderEmailContactFn
+      Handler: app.lambdaHandler
+      CodeUri: src/
+      Runtime: nodejs16.x
+      Timeout: 7
       Events:
         SenderEmail:
           Type: Api
@@ -33,7 +34,3 @@ Resources:
           SenderEmail: !Ref SenderEmail
           RecipientEmail: !Ref RecipientEmail
           SenderPassword: !Ref SenderPassword
-    Metadata:
-      DockerTag: 16
-      DockerContext: ./src
-      Dockerfile: Dockerfile
