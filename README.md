@@ -4,12 +4,7 @@ This repository constains a lambda function to send e-mail about our contact spa
 
 The lamba function is called by an ApiGateway with the route: 'POST /email'.
 
-This project was made with:
-- Express.js
-- Cors
-- Elastic Container Registry (ECR)
-- Docker Hub
-- Lambda with custom image
+This project was made with node.js
 
 # Object Definition
 - Message: the message to us, this field is required
