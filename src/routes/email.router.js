@@ -6,8 +6,8 @@ const emailServiceValidator = require("../services/send-email-validator");
 
 router.post('/', basePath, async (req, res) => {
     try {
-        console.log(req.body);
-        let errors = emailServiceValidator.ValidateObject(req.body);
+        const body = req.body;
+        let errors = emailServiceValidator.ValidateObject(body);
 
         if (errors.length > 0) {
             res.status(400).json({
@@ -16,11 +16,12 @@ router.post('/', basePath, async (req, res) => {
             return;
         }
 
-        await emailService.SendEmail(req.body)
+        await emailService.SendEmail(body)
             .then(() => {
                 res.status(200);
             })
-            .catch(() => {
+            .catch((err) => {
+                console.log(err);
                 res.status(500).json({
                     errors: 'erro ao enviar e-mail'
                 });
