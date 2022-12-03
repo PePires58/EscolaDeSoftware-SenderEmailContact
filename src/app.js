@@ -4,7 +4,7 @@ exports.lambdaHandler = async (event, context) => {
 
     try {
 
-        const body = JSON.parse(event.body);
+        const body = JSON.parse(atob(event.body));
         const errors = [];
 
         await sendEmailService.SendEmail({
@@ -30,10 +30,10 @@ exports.lambdaHandler = async (event, context) => {
 function errorResult(statusCode, errors) {
     return {
         'statusCode': statusCode,
-        'body': JSON.stringify({
+        'body': Buffer.from(JSON.stringify({
             errors: errors
-        }),
-        'isBase64Encoded': false,
+        }), 'base64').toString('base64'),
+        'isBase64Encoded': true,
         'headers': {
             'Content-Type': 'application/json'
         }
@@ -43,10 +43,10 @@ function errorResult(statusCode, errors) {
 function defaultResult(statusCode, message) {
     return {
         'statusCode': statusCode,
-        'body': JSON.stringify({
+        'body': Buffer.from(JSON.stringify({
             message: message
-        }),
-        'isBase64Encoded': false,
+        }), 'base64').toString('base64'),
+        'isBase64Encoded': true,
         'headers': {
             'Content-Type': 'application/json'
         }
