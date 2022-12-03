@@ -12,6 +12,12 @@ Parameters:
     Description: Sender password
     Type: String
 
+Globals:
+    Api:
+        Cors:
+            AllowMethods: "'GET,POST,OPTIONS'"
+            AllowHeaders: "'content-type'"
+            AllowOrigin: "'https://dak1pni58hzx7.cloudfront.net'"
 Resources:
   
   SendEmailFunction:
