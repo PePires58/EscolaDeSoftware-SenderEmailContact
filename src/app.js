@@ -35,7 +35,10 @@ function errorResult(statusCode, errors) {
         }),
         'isBase64Encoded': true,
         'headers': {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': "https://dak1pni58hzx7.cloudfront.net/",
+            'Access-Control-Allow-Methods': 'POST'
         }
     };
 }
@@ -48,7 +51,10 @@ function defaultResult(statusCode, message) {
         }),
         'isBase64Encoded': true,
         'headers': {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': "https://dak1pni58hzx7.cloudfront.net/",
+            'Access-Control-Allow-Methods': 'POST'
         }
     }
 }
