@@ -1,7 +1,6 @@
 const nodemailder = require('nodemailer');
 
 exports.SendEmail = async function (emailData) {
-
     const senderEmail = process.env.SenderEmail;
 
     const transporter = nodemailder.createTransport({
@@ -24,5 +23,6 @@ exports.SendEmail = async function (emailData) {
         text: `Olá, meu e-mail é: ${emailData.Email}, estou entrando em contato para:\n${emailData.Mensagem}`
     }
 
+    console.log(process.env);
     return transporter.sendMail(emailOptions);
 }
