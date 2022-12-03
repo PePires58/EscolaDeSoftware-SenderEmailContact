@@ -18,7 +18,7 @@ router.post('/', basePath, async (req, res) => {
 
         await emailService.SendEmail(req.body)
             .then(() => {
-                res.sendStatus(200);
+                res.status(200);
             })
             .catch(() => {
                 res.status(500).json({
