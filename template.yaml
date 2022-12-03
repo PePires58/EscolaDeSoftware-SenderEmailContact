@@ -27,8 +27,8 @@ Resources:
         SenderEmail:
           Type: Api
           Properties:
-            Path: /{proxy+}
-            Method: any
+            Path: /email
+            Method: POST
       Environment:
         Variables:
           SenderEmail: !Ref SenderEmail
