@@ -13,11 +13,12 @@ Parameters:
     Type: String
 
 Globals:
-    Api:
-        Cors:
-            AllowMethods: "'GET,POST,OPTIONS'"
-            AllowHeaders: "'content-type'"
-            AllowOrigin: "'https://dak1pni58hzx7.cloudfront.net'"
+  Api:
+    Cors:
+      AllowMethods: "'GET,POST,OPTIONS'"
+      AllowHeaders: "'content-type'"
+      AllowOrigin: "'https://dak1pni58hzx7.cloudfront.net'"
+
 Resources:
   
   SendEmailFunction:
@@ -28,7 +29,7 @@ Resources:
       Handler: app.lambdaHandler
       CodeUri: src/
       Runtime: nodejs16.x
-      Timeout: 7
+      Timeout: 9
       Events:
         SenderEmail:
           Type: Api
