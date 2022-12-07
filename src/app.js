@@ -3,7 +3,6 @@ const sendEmailService = require('./services/send-email.service');
 exports.lambdaHandler = async (event, context) => {
 
     try {
-
         const body = JSON.parse(event.body);
         const errors = [];
 
